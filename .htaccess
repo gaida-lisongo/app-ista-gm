@@ -1,0 +1,23 @@
+RewriteEngine On
+RewriteBase /
+
+# Empêcher l'accès direct aux répertoires
+Options -Indexes
+
+# Rediriger toutes les requêtes vers index.php sauf si le fichier ou dossier existe
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# Protection des fichiers sensibles
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Sécurité supplémentaire
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>
