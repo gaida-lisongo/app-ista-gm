@@ -1,9 +1,13 @@
 <?php
-    $path = "/views/templates/front/sona/";
+    $path = "/config/ista-assets/images";
     $page = array(
         'title' => "Souhaitez vous nous contacter ?",
         'current' => "Contact",
     );
+
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
 
     ob_start();
     require_once 'components/header.php';

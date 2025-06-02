@@ -1,12 +1,16 @@
 
         <div class="tag-share">
             <div class="tags">
-                <a href="/section/promotion-1">L1 MEC</a>
-                <a href="/section/promotion-2">L2 MEC</a>
-                <a href="/section/promotion-3">L3 MEC</a>
+            <?php
+            foreach ($data['promotions'] as $promotion) {
+            ?>
+                <a href="/section/promotion-<?= htmlspecialchars($promotion['id']) ?>"><?= htmlspecialchars($promotion['niveau']) ?> <?= htmlspecialchars($promotion['section']) ?> - <?= htmlspecialchars($promotion['systeme']) ?></a>
+            <?php
+            }
+            ?>
             </div>
             <div class="social-share">
                 <span><i class="fa fa-users"></i> Promotions:</span>
-                <span class="share-count">5</span>
+                <span class="share-count"><?= count($data['promotions']) ?></span>
             </div>
         </div>

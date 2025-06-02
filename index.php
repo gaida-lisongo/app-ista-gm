@@ -64,6 +64,10 @@ spl_autoload_register(function($class) {
     }
 });
 
+
+// Global variables for the view like Api BaseURL
+define('API', 'https://server-ista-gm-production.up.railway.app/api');
+
 // Start the router
 $router = new Router();
 $router->route();

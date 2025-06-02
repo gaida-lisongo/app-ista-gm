@@ -1,5 +1,5 @@
 <?php
-$path = "/views/templates/front/sona/";
+    $path = "/views/templates/front/sona/";
 ?>
     <!-- Offcanvas Menu Section Begin -->
     <div class="offcanvas-menu-overlay"></div>
@@ -30,7 +30,7 @@ $path = "/views/templates/front/sona/";
                 <li class="<?= $this->auth->getCurrentPage() === 'home' ? 'active' : '' ?>"><a href="/">Acceuil</a></li>
                 <li class="<?= $this->auth->getCurrentPage() === 'valves' ? 'active' : '' ?>"><a href="/valves">Valves</a></li>
                 <li class="<?= $this->auth->getCurrentPage() === 'section' ? 'active' : '' ?>"><a href="#">Programmes</a>
-                    <ul class="dropdown">    
+                    <ul class="dropdown programmes-items">    
                         <li><a href="/section/programmes-1">Génie Civil</a></li>
                         <li><a href="/section/programmes-2">Architecture</a></li>
                         <li><a href="/section/programmes-3">Construction</a></li>
@@ -107,7 +107,7 @@ $path = "/views/templates/front/sona/";
                                     <li class="<?= $this->auth->getCurrentPage() === 'home' ? 'active' : '' ?>"><a href="/">Acceuil</a></li>
                                     <li class="<?= $this->auth->getCurrentPage() === 'valves' ? 'active' : '' ?>"><a href="/valves">Valves</a></li>
                                     <li class="<?= $this->auth->getCurrentPage() === 'section' ? 'active' : '' ?>"><a href="#">Programmes</a>
-                                        <ul class="dropdown">
+                                        <ul class="dropdown programmes-items">
                                             <li><a href="/section/programmes-1">Génie Civil</a></li>
                                             <li><a href="/section/programmes-2">Architecture</a></li>
                                             <li><a href="/section/programmes-3">Construction</a></li>
@@ -124,3 +124,34 @@ $path = "/views/templates/front/sona/";
         </div>
     </header>
     <!-- Header End -->
+    <script>
+        $(document).ready(function() {
+            // Initialize the offcanvas menu
+            const apiUrl = '<?= API ?>';
+
+            $.ajax({
+                url: apiUrl + '/home',
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    const {status, message, data } = response;
+                    
+                    if(data.count > 0) {
+                        let menuHtml = '';
+                        data.rows.forEach(item => {
+                            menuHtml += `<li class="${item.active ? 'active' : ''}"><a href="/section/programmes-${item.id}">${item.designation}</a></li>`;
+                        });
+
+                        const innerMenu = $('.programmes-items');
+                        innerMenu.empty(); // Clear existing items
+                        innerMenu.html(menuHtml);
+                    } else {
+                        console.warn('No menu items found');
+                    }
+                },
+                error: function() {
+                    console.error('Failed to load menu data');
+                }
+            });
+        });
+    </script>
