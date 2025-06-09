@@ -30,11 +30,21 @@ class SectionView extends HomeView
     }
 
     public function promotion($slug = null) {
+        $promotionInfo = $this->getPromotion(htmlspecialchars($slug));
+
+        if (!$promotionInfo) {
+            // Si la promotion n'est pas trouvée, on peut rediriger ou afficher une erreur
+            header("HTTP/1.0 404 Not Found");
+            echo "Promotion not found";
+            exit;
+        }
         return $this->render(
             'classe', 
             [
-                'promotion' => "L3 Mécanique",
-            ], 
+                'info' => $this->promotion,
+                'annees' => $this->annees,
+                'currentAnnee' => $this->currentAnnee,
+            ],
             "Promotion " . htmlspecialchars($slug));
     }
 
@@ -66,11 +76,27 @@ class SectionView extends HomeView
         }
     }
 
-    public function setPromotion($selectedPromotion){
-        $this->promotion = $selectedPromotion;
-    }
+    public function getPromotion($promotionId) {
+        $id = (int) $promotionId; // Assurez-vous que l'ID est un entier
+        if ($id <= 0) {
+            throw new \InvalidArgumentException("L'ID de la promotion doit être un entier positif.");
+        }
+        try {
+            // Ici on va  recupérer les information de la section depuis l'API
+            $response = json_decode(file_get_contents("{$this->urlApi}home/promotion/{$id}"), true);
+            
+            if ($response['status'] != 200) {
+                // Gérer l'erreur si la requête a échoué
+                throw new \Exception("Erreur lors de la récupération des promotions: " . $response['message']);
+            }
 
-    public function getPromotion() {
-        return $this->promotion;
+            $data = $response['data'];
+            $this->promotion = $data ?? null;
+            return $data ?? null; // Retourne la première promotion ou null si aucune n'est trouvée
+
+        } catch (\Exception $e) {
+            // Gérer l'exception si la requête échoue
+            throw new \Exception("Erreur lors de la récupération des promotions: " . $e->getMessage());
+        }
     }
 }

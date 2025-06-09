@@ -45,13 +45,9 @@
             <div class="footer-text">
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="ft-about">
-                            <div class="logo">
-                                <a href="#">
-                                    <img src="/views/templates/front/sona/img/footer-logo.png" alt="">
-                                </a>
-                            </div>
-                            <p>À l'INBTP, nous formons les bâtisseurs de demain<br /> Votre avenir, notre priorité</p>
+                        <div class="ft-about ft-contact">                            
+                            <h6>Institut Supérieur de Techniques Appliquées</h6>
+                            <p>À l'ISTA/GM à Mbanza-Ngungu, nous formons les ingénieurs compétents de demain<br /> Votre avenir, notre priorité</p>
                             <div class="fa-social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>

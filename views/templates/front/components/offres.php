@@ -1,65 +1,50 @@
 
     <!-- Services Section End -->
-    <section class="services-section spad">
+    <section class="services-section spad" id="formations">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>What We Do</span>
-                        <h2>Discover Our Services</h2>
+                        <span>Enseignement</span>
+                        <h2>Découvrez Nos Filières</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-036-parking"></i>
-                        <h4>Travel Plan</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-033-dinner"></i>
-                        <h4>Catering Service</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-026-bed"></i>
-                        <h4>Babysitting</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-024-towel"></i>
-                        <h4>Laundry</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-044-clock-1"></i>
-                        <h4>Hire Driver</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="service-item">
-                        <i class="flaticon-012-cocktail"></i>
-                        <h4>Bar & Drink</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna.</p>
-                    </div>
-                </div>
+            <div class="row filieres-list">
+                <!-- Les filières seront chargées ici dynamiquement -->
             </div>
         </div>
     </section>
     <!-- Services Section End -->
+    <script>
+        $(document).ready(function() {
+            // Code pour charger les filières depuis l'API
+            const apiUrl = '<?= API ?>';
+            $.get(`${apiUrl}/home`)
+                .done(function(response) {
+                    const { status, message, data } = response;
+
+                    console.log('Chargement des filières:', data);
+                    if (status) {
+                        let html = '';
+                        $('.filieres-list').text(html);
+                        data.rows.forEach(filiere => {
+                            html += `
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="service-item">
+                                        <i class="flaticon-036-parking"></i>
+                                        <h4>${filiere.designation}</h4>
+                                        <p>${filiere.description}</p>
+                                    </div>
+                                </div>`;
+                        });
+                        $('.filieres-list').html(html);
+                    } else {
+                        console.error('Erreur lors du chargement des filières:', message);
+                    }
+                })
+                .fail(function() {
+                    console.error('Erreur de connexion à l\'API');
+                });
+        });
+        </script>

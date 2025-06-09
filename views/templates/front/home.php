@@ -3,9 +3,9 @@
     ob_start();
 
     require_once 'components/banner.php';
+    require_once 'components/metrics.php';
     require_once 'components/whyUs.php';
     require_once 'components/offres.php';
-    require_once 'components/mentions.php';
     require_once 'components/galeries.php';
     require_once 'components/partenaires.php';
 

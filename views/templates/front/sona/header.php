@@ -1,5 +1,5 @@
 <?php
-    $path = "/views/templates/front/sona/";
+    $path = "/config/ista-assets/images";
 ?>
     <!-- Offcanvas Menu Section Begin -->
     <div class="offcanvas-menu-overlay"></div>
@@ -15,7 +15,7 @@
         </div>        
         <div class="header-configure-area">
             <div class="language-option">
-                <img src="<?= $path ?>img/flag.jpg" alt="">
+                <img src="<?= $path ?>/ista-logo.png" alt="">
                 <span><?= $this->auth->getName() ?> <i class="fa fa-angle-down"></i></span>
                 <div class="flag-dropdown">
                     <ul>
@@ -75,12 +75,12 @@
                             </div>
                             <a href="#" class="bk-btn">Bibliothèque</a>
                             <div class="language-option">
-                                <img src="<?= $path ?>img/flag.jpg" alt="">
-                                <span>EN <i class="fa fa-angle-down"></i></span>
+                                <img src="<?= $path ?>/logo.png" alt="">
+                                <span>Connexion <i class="fa fa-angle-down"></i></span>
                                 <div class="flag-dropdown">
                                     <ul>
-                                        <li><a href="#">Zi</a></li>
-                                        <li><a href="#">Fr</a></li>
+                                        <li><a href="#">Se connecter</a></li>
+                                        <li><a href="#">Mot de passe oublié ?</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                     <div class="col-lg-2">
                         <div class="logo">
                             <a href="/">
-                                <img src="<?= $path ?>img/logo.png" alt="">
+                                <img src="<?= $path ?>/ista-logo.png" alt="">
                             </a>
                         </div>
                     </div>

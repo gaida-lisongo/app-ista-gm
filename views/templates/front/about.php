@@ -9,8 +9,9 @@
 
     require_once 'components/breadcrumb.php';
     require_once 'components/mission.php';
-    require_once 'components/history.php';
-    require_once 'components/partenaires.php';
+    require_once 'components/timeline.php';
+    // require_once 'components/history.php';
+    require_once 'components/collaborateurs.php';
 
     $content = ob_get_clean();
     require_once __DIR__ . '/sona/gabarit.php';

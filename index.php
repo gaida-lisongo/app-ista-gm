@@ -66,7 +66,7 @@ spl_autoload_register(function($class) {
 
 
 // Global variables for the view like Api BaseURL
-define('API', 'https://server-ista-gm-production.up.railway.app/api');
+define('API', 'https://frozen-chandal-admin-elmes-d89f2982.koyeb.app/api');
 
 // Start the router
 $router = new Router();
