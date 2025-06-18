@@ -15,9 +15,9 @@
         </div>        
         <div class="header-configure-area">
             <div class="language-option">
-                <img src="<?= $path ?>/ista-logo.png" alt="">
-                <span><?= $this->auth->getName() ?> <i class="fa fa-angle-down"></i></span>
-                <div class="flag-dropdown">
+                <img src="<?= $path ?>/ista-logo.png" alt="" class="photo-etudiant">
+                <span class="curent-solde">ESPACE ETUDIANT<i class="fa fa-angle-down"></i></span>
+                <div class="flag-dropdown menu-etudiant">
                     <ul>
                     <?= $this->auth->getMenu() ?>
                     </ul>
@@ -42,10 +42,10 @@
         </nav>
         <div id="mobile-menu-wrap"></div>
         <div class="top-social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-tripadvisor"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
+            <span class='indicator'>
+                <?= isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0 ?>
+            </span>
+            <a href="/panier"><i class="fa fa-shopping-cart"></i></a>
         </div>
         <ul class="top-widget">
             <li><i class="fa fa-phone"></i> (+243) 999 888 777</li>
@@ -68,19 +68,18 @@
                     <div class="col-lg-6">
                         <div class="tn-right">
                             <div class="top-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <span class='indicator'>
+                                    <?= isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0 ?>
+                                </span>
+                                <a href="/panier"><i class="fa fa-shopping-cart"></i></a>
                             </div>
                             <a href="#" class="bk-btn">Bibliothèque</a>
                             <div class="language-option">
-                                <img src="<?= $path ?>/logo.png" alt="">
-                                <span>Connexion <i class="fa fa-angle-down"></i></span>
-                                <div class="flag-dropdown">
+                                <img src="<?= $path ?>/logo.png" alt="" class="photo-etudiant">
+                                <span class="curent-solde">ESPACE ETUDIANT<i class="fa fa-angle-down"></i></span>
+                                <div class="flag-dropdown menu-etudiant">
                                     <ul>
-                                        <li><a href="#">Se connecter</a></li>
-                                        <li><a href="#">Mot de passe oublié ?</a></li>
+                                        <?= $this->auth->getMenu() ?>
                                     </ul>
                                 </div>
                             </div>
@@ -153,5 +152,91 @@
                     console.error('Failed to load menu data');
                 }
             });
+            const user = JSON.parse(localStorage.getItem('user'));
+
+            if (user) {
+                $('.menu-etudiant').html(`
+                    <ul>
+                        <li><a href="/user/dashboard">Dashboard</a></li>
+                        <li><a href="#" class="logout">Déconnexion</a></li>
+                    </ul>
+                `);
+
+                $('.curent-solde').text(user.solde + ' FC');
+                console.log('User data:', user);
+                $('.photo-etudiant').attr('src', user.avatar ? user.avatar : '<?= $path ?>/default-etudiant.png');
+            }
+
+            $('.logout').on('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('user');
+                localStorage.removeItem('token');
+                window.location.href = '/';
+            });
         });
     </script>
+<style>
+/* Style de base pour le conteneur du panier */
+.top-social {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style pour l'indicateur - Version mobile */
+.offcanvas-menu-wrapper .indicator {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    background: #dfa974;
+    color: white;
+    font-size: 12px;
+    min-width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 0 4px;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+/* Style pour l'indicateur - Version desktop */
+.tn-right .indicator {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    background: #dfa974;
+    color: white;
+    font-size: 11px;
+    min-width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 0 3px;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+/* Style pour le lien du panier */
+.top-social a {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+
+/* Ajuster l'icône du panier */
+.top-social .fa-shopping-cart {
+    font-size: 18px;
+    color: #19191a;
+}
+
+/* Ajustements spécifiques pour la version desktop */
+.tn-right .top-social {
+    margin-right: 15px;
+}
+
+.tn-right .fa-shopping-cart {
+    font-size: 16px;
+}
+</style>

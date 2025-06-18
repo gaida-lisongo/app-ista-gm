@@ -83,7 +83,11 @@ class HomeView extends View {
         // Render the valves page view
         return $this->render('valves', [], "Actualités");
     }
-    
+
+    public function communique($id) {
+        return $this->render('communique', ['id' => $id], "Communiqué");
+    }
+
     public function about() {
         // Render the about page view
         return $this->render('about', [], "A Propos");
@@ -92,5 +96,15 @@ class HomeView extends View {
     public function contact() {
         // Render the contact page view
         return $this->render('contact', [], "Nous Contacter");
+    }
+
+    public function panier() {
+        // Render the panier page view
+        return $this->render('panier', [], "Panier");
+    }
+
+    public function login() {
+        // Render the login page view
+        return $this->render('login', [], "Connexion");
     }
 }

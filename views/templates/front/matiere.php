@@ -1,12 +1,11 @@
 <?php
-    $path = "/views/templates/front/sona/";
+    $path = "/config/ista-assets/images";
     $page = array(
         'title' => $title,
         'current' => $data['cours'] ? $data['cours'] : "cours",
     );
 
     ob_start();
-    require_once 'components/breadcrumb.php';
 ?>
     <style>
         .custom-file-upload {
@@ -92,116 +91,188 @@
         .titulaire-contact a:hover {
             color: #cc9563;
         }
+        .loader-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+        }
+
+        .loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #DFA974;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader p {
+            margin-top: 10px;
+            color: #19191a;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .qr-code-container {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .qr-code-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .review-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .qr-section {
+            flex: 0 0 150px; /* Largeur fixe pour le QR code */
+        }
+
+        .review-details {
+            flex: 1; /* Prend le reste de l'espace disponible */
+        }
+
+        .ri-text span {
+            color: #dfa974;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .ri-text .rating {
+            margin: 10px 0;
+        }
+
+        .ri-text h5 {
+            color: #19191a;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .ri-text p {
+            color: #707079;
+            line-height: 1.6;
+        }
     </style>
 
     <!-- Room Details Section Begin -->
     <section class="room-details-section spad">
-        <div class="container">
+        <div id="loader" class="loader-container">
+            <div class="loader">
+                <div class="spinner"></div>
+                <p>Chargement des informations du cours...</p>
+            </div>
+        </div>
+
+        <div id="content" class="container" style="display: none;">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="room-details-item">
-                        <img src="<?= $path ?>img/room/room-details.jpg" alt="">
+                        <img src="<?= $path ?>/banner-section.jpg" alt="">
                         <div class="rd-text">
                             <div class="rd-title">
-                                <h3>Premium King Room</h3>
+                                <h3 class="titre-matiere"></h3>
                                 <div class="rdt-right">
-                                    <div class="rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star-half_alt"></i>
+                                    <div class="rating credit-matiere">
                                     </div>
-                                    <a href="#">Booking Now</a>
+                                    <a class="url-matiere" href="#">Note de cours</a>
                                 </div>
                             </div>
-                            <h2>159$<span>/Pernight</span></h2>
+                            <h2 class="semestre-matiere"></h2>
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
+                                        <td class="r-o">Unité:</td>
+                                        <td class="titre-unite"></td>
                                     </tr>
                                     <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 5</td>
+                                        <td class="r-o">Code:</td>
+                                        <td class="code-unite"></td>
                                     </tr>
                                     <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
+                                        <td class="r-o">Année:</td>
+                                        <td class="annee-unite"></td>
                                     </tr>
                                     <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
+                                        <td class="r-o">Mention:</td>
+                                        <td class="mention-unite"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Filière:</td>
+                                        <td class="filiere-unite"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">ECUE:</td>
+                                        <td class="elements-unite"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Credit:</td>
+                                        <td class="credit-unite"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Promotion:</td>
+                                        <td class="promotion-unite"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">objectif:</td>
+                                        <td class="objectif-unite"></td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="f-para">Motorhome or Trailer that is the question for you. Here are some of the
-                                advantages and disadvantages of both, so you will be confident when purchasing an RV.
-                                When comparing Rvs, a motorhome or a travel trailer, should you buy a motorhome or fifth
-                                wheeler? The advantages and disadvantages of both are studied so that you can make your
-                                choice wisely when purchasing an RV. Possessing a motorhome or fifth wheel is an
-                                achievement of a lifetime. It can be similar to sojourning with your residence as you
-                                search the various sites of our great land, America.</p>
-                            <p>The two commonly known recreational vehicle classes are the motorized and towable.
-                                Towable rvs are the travel trailers and the fifth wheel. The rv travel trailer or fifth
-                                wheel has the attraction of getting towed by a pickup or a car, thus giving the
-                                adaptability of possessing transportation for you when you are parked at your campsite.
-                            </p>
+                            <p class="f-para objectif-matiere"></p>
+                            <p class="place-matiere"></p>
+                            <p class="mode-matiere"></p>
+                            <p class="penalites-matiere"></p>
                         </div>
                     </div>
-                    <div class="rd-reviews">
-                        <h4>Reviews</h4>
-                        <div class="review-item">
-                            <div class="ri-pic">
-                                <img src="<?= $path ?>img/room/avatar/avatar-1.jpg" alt="">
-                            </div>
-                            <div class="ri-text">
-                                <span>27 Aug 2019</span>
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5>Brandon Kelley</h5>
-                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                                    magnam.</p>
-                            </div>
-                        </div>
-                        <div class="review-item">
-                            <div class="ri-pic">
-                                <img src="<?= $path ?>img/room/avatar/avatar-2.jpg" alt="">
-                            </div>
-                            <div class="ri-text">
-                                <span>27 Aug 2019</span>
-                                <div class="rating">
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star"></i>
-                                    <i class="icon_star-half_alt"></i>
-                                </div>
-                                <h5>Brandon Kelley</h5>
-                                <p>Neque porro qui squam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non numquam eius modi tempora. incidunt ut labore et dolore
-                                    magnam.</p>
-                            </div>
-                        </div>
+                    <div class="rd-reviews list-seances">
+                        <h4>Séances</h4>
                     </div>
                 </div>                
                 <div class="col-lg-4">
                     <div class="titulaire-card">
                         <img src="<?= $path ?>img/room/avatar/avatar-1.jpg" alt="Photo du titulaire" class="titulaire-photo">
                         <div class="titulaire-info">
-                            <h4>Dr. John Doe</h4>
-                            <p><i class="fa fa-graduation-cap"></i> Professeur Titulaire</p>
-                            <p><i class="fa fa-book"></i> Département d'Informatique</p>
+                            <h4 class="titulaire-nom"></h4>
+                            <p class="titulaire-grade"><i class="fa fa-graduation-cap"></i> </p>
+                            <p class="titulaire-disponibilite"><i class="fa fa-book"></i></p>
                             <div class="titulaire-contact">
-                                <p><i class="fa fa-envelope"></i> <a href="mailto:john.doe@example.com">john.doe@example.com</a></p>
-                                <p><i class="fa fa-phone"></i> <a href="tel:+123456789">+123 456 789</a></p>
+                                <p><i class="fa fa-envelope"></i> <a href="mailto:john.doe@example.com" class="titulaire-email"></a></p>
+                                <p><i class="fa fa-phone"></i> <a href="tel:+123456789" class="titulaire-phone"></a></p>
                             </div>
                         </div>
                     </div>
@@ -238,53 +309,323 @@
     </section>
     <!-- Room Details Section End -->
     <!-- Recommend Blog Section Begin -->
-    <section class="recommend-blog-section spad">
+    <!-- Rooms Section Begin -->
+    <section class="rooms-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Travaux Pratiques</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="<?= $path ?>img/blog/blog-1.jpg">
-                        <div class="bi-text">
-                            <span class="b-tag">Travel Trip</span>
-                            <h4><a href="#">Tremblant In Canada</a></h4>
-                            <div class="b-time"><i class="icon_clock_alt"></i> 15th April, 2019</div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="<?= $path ?>/banner-section.jpg" alt="">
+                        <div class="ri-text">
+                            <h4>Premium King Room</h4>
+                            <h3>159$<span>/Pernight</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Size:</td>
+                                        <td>30 ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Capacity:</td>
+                                        <td>Max persion 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>King Beds</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Television, Bathroom,...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="#" class="primary-btn">More Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="<?= $path ?>img/blog/blog-2.jpg">
-                        <div class="bi-text">
-                            <span class="b-tag">Camping</span>
-                            <h4><a href="#">Choosing A Static Caravan</a></h4>
-                            <div class="b-time"><i class="icon_clock_alt"></i> 15th April, 2019</div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="<?= $path ?>/banner-section.jpg" alt="">
+                        <div class="ri-text">
+                            <h4>Deluxe Room</h4>
+                            <h3>159$<span>/Pernight</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Size:</td>
+                                        <td>30 ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Capacity:</td>
+                                        <td>Max persion 5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>King Beds</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Television, Bathroom,...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="#" class="primary-btn">More Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="blog-item set-bg" data-setbg="<?= $path ?>img/blog/blog-3.jpg">
-                        <div class="bi-text">
-                            <span class="b-tag">Event</span>
-                            <h4><a href="#">Copper Canyon</a></h4>
-                            <div class="b-time"><i class="icon_clock_alt"></i> 21th April, 2019</div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="<?= $path ?>/banner-section.jpg" alt="">
+                        <div class="ri-text">
+                            <h4>Double Room</h4>
+                            <h3>159$<span>/Pernight</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Size:</td>
+                                        <td>30 ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Capacity:</td>
+                                        <td>Max persion 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>King Beds</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Television, Bathroom,...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="<?= $path ?>/banner-section.jpg" alt="">
+                        <div class="ri-text">
+                            <h4>Luxury Room</h4>
+                            <h3>159$<span>/Pernight</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Size:</td>
+                                        <td>30 ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Capacity:</td>
+                                        <td>Max persion 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>King Beds</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Television, Bathroom,...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="<?= $path ?>/banner-section.jpg" alt="">
+                        <div class="ri-text">
+                            <h4>Room With View</h4>
+                            <h3>159$<span>/Pernight</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Size:</td>
+                                        <td>30 ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Capacity:</td>
+                                        <td>Max persion 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>King Beds</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Television, Bathroom,...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="#" class="primary-btn">More Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="<?= $path ?>/banner-section.jpg" alt="">
+                        <div class="ri-text">
+                            <h4>Small View</h4>
+                            <h3>159$<span>/Pernight</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Size:</td>
+                                        <td>30 ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Capacity:</td>
+                                        <td>Max persion 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>King Beds</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Television, Bathroom,...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="#" class="primary-btn">More Details</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Recommend Blog Section End -->
+    <!-- Rooms Section End -->
+     
     <script>
     document.getElementById('file-in').addEventListener('change', function(e) {
         var fileName = e.target.files[0] ? e.target.files[0].name : 'Aucun fichier sélectionné';
         document.getElementById('file-name').textContent = fileName;
     });
     </script>
+    <script>
+    const getQrCodeApi = (data, color='#000000', background='#ffffff', size='150x150') => {
+        try {
+            const qrCode = `<div class="qr-code-container"><img src="https://qrcode.tec-it.com/API/QRCode?data=${encodeURIComponent(data)}&color=${color}&background=${background}&size=${size}" /></div>`;
+
+            return qrCode;
+        } catch (error) {
+            console.error('Error fetching QR code:', error);
+            return null;
+        }
+    }
+
+    const apiUrl = 'https://server-ista-gm-sncd.onrender.com/api/';
+    const matiereId = '<?= $data['id'] ?>'.trim();
+
+    const fetchData = async (id) => {
+        try {
+            // Afficher le loader
+            $('#loader').show();
+            $('#content').hide();
+
+            const request = await fetch(`${apiUrl}home/matiere/${id}`);
+            if (!request.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const response = await request.json();
+            const { animateur, unite, matiere, travaux, seances } = response.data;
+
+            $('.titre-matiere').text(matiere.designation);
+            const getRatings = (credit) => {
+                const totalRatings = parseInt(credit);
+                const ratings = (`<i class="icon_star"></i>`).repeat(totalRatings);
+
+                $('.credit-matiere').html(ratings);
+            }
+
+            getRatings(matiere.credit);
+            $('.url-matiere').attr('href', `${matiere.noteUrl}`);
+
+            $('.semestre-matiere').text(`Semestre : ${matiere.semestre}`);
+
+            const setUniteDescription = (unite) => {
+                let ecues = '';
+                unite.ecues.forEach(ecue => {
+                    if (ecue.id == matiere.id) {
+                        ecues += `<li class="active"><b>${ecue.designation} (${ecue.credit} crédits)</b></li>`;
+                    } else {
+                        ecues += `<li>${ecue.designation} (${ecue.credit} crédits)</li>`;
+                    }
+                });
+
+                const ecueList = `<ul>${ecues}</ul>`;
+
+                const totalCredits = unite.ecues.reduce((sum, ecue) => sum + ecue.credit, 0);
+                const promotion = unite.promotion ? unite.promotion.split(' ')[0] : 'Non spécifiée';
+
+                $('.titre-unite').text(unite.designation);
+                $('.code-unite').text(unite.code);
+                $('.annee-unite').text(`${unite.annee.debut} - ${unite.annee.fin}`);
+                $('.mention-unite').text(unite.filiere);
+                $('.filiere-unite').text(unite.mention);
+                $('.elements-unite').html(ecueList);
+                $('.credit-unite').text(totalCredits);
+                $('.promotion-unite').text(promotion);
+                $('.objectif-unite').text(unite.objectif);
+            }
+            
+            setUniteDescription(unite);
+
+            $('.objectif-matiere').html(matiere.objectif);
+            $('.place-matiere').html(`${matiere.place}`);
+            $('.mode-matiere').html(`<b>${matiere.mode_ens}</b>`);
+            $('.penalites-matiere').html(`<b>${matiere.penalites}</b>`);
+
+            let seancesHtml = '';
+            seances.length > 0 ? seances.forEach(seance => {
+                seancesHtml += `
+                    <div class="review-item">
+                        <div class="qr-section">
+                            ${getQrCodeApi(seance.id, '#DFA974', '#ffffff', '150x150')}
+                        </div>
+                        <div class="review-details">
+                            <div class="ri-text">
+                                <span>${new Date(seance.date_seance).toLocaleDateString()}</span>
+                                <div class="rating">
+                                    ${'<i class="icon_star"></i>'.repeat(seance.note)}
+                                </div>
+                                <h5>${seance.titre}</h5>
+                                <p>${seance.description}</p>
+                            </div>
+                        </div>
+                    </div>`;
+            }) : seancesHtml = '<p>Aucune séance disponible.</p>';
+            $('.list-seances').append(seancesHtml);
+            console.log('Animateur data:', animateur);
+            $('.titulaire-photo').attr('src', `https://ista-gm.net/public/Views/template/img/profile/${animateur.photo}` || '<?= $path ?>/ista-profile.png');
+            $('.titulaire-nom').append(` ${animateur.grade} ${animateur.nom}`);
+            $('.titulaire-grade').append("Titulaire du cours");
+            $('.titulaire-disponibilite').append(animateur.disponibilite ? animateur.disponibilite : 'Disponibilité non spécifiée');
+            $('.titulaire-email').append(animateur.email ? animateur.email : 'contact@ista-gm.net');
+            $('.titulaire-email').attr('href', `mailto:${animateur.email ? animateur.email : 'contact@ista-gm.net'}`);
+            $('.titulaire-phone').append(animateur.telephone ? animateur.telephone : '+243 89 031 13 34');
+            $('.titulaire-phone').attr('href', `tel:${animateur.telephone ? animateur.telephone : '+243890311334'}`);
+
+            // Une fois toutes les données chargées
+            $('#loader').fadeOut();
+            $('#content').fadeIn();
+
+        } catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
+            // Afficher un message d'erreur à l'utilisateur
+            $('#loader').html(`
+                <div class="loader">
+                    <i class="fa fa-exclamation-circle" style="color: #dc3545; font-size: 40px;"></i>
+                    <p style="color: #dc3545; margin-top: 15px;">Une erreur est survenue lors du chargement des données.</p>
+                </div>
+            `);
+        }
+    }
+
+    fetchData(matiereId);
+</script>
 <?php
     $content = ob_get_clean();
     require_once __DIR__ . '/sona/gabarit.php';

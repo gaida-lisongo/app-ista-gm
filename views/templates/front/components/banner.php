@@ -77,33 +77,7 @@
                     </div>`);
                 });
             });
-            
-            const apiUrl = '<?= API ?>';
 
-            $.ajax({
-                url: apiUrl + '/home',
-                method: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    const {status, message, data } = response;
-                    
-                    if(data.count > 0) {
-                        let menuHtml = '';
-                        data.rows.forEach(item => {
-                            menuHtml += `<option value="section-${item.id}">${item.designation}</option>`;
-                        });
-
-                        const innerMenu = $('.programmes-items');
-                        innerMenu.empty(); // Clear existing items
-                        innerMenu.html(menuHtml);
-                    } else {
-                        console.warn('No menu items found');
-                    }
-                },
-                error: function() {
-                    console.error('Failed to load menu data');
-                }
-            });
 
         });
     </script>

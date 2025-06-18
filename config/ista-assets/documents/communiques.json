@@ -1,0 +1,69 @@
+{
+  "communiques": [
+    {
+      "id": 1,
+      "titre": "Annonce de la rentrée académique 2024-2025",
+      "service": "Direction Générale",
+      "contenu": "<p>L'Institut Supérieur de Techniques Appliquées de Gombe-Matadi (ISTA/GM) informe tous les étudiants que la rentrée académique 2024-2025 est fixée au lundi 15 septembre 2024.</p><p>Programme de la rentrée :<ul><li>8h00 : Accueil des nouveaux étudiants</li><li>10h00 : Cérémonie officielle d'ouverture</li><li>14h00 : Début des cours</li></ul></p><p>Les étudiants sont priés de se présenter munis de leur carte d'étudiant et des preuves de paiement des frais académiques.</p>",
+      "date_created": "2024-08-15T08:00:00.000Z",
+      "id_auteur": 1,
+      "statut": "publié"
+    },
+    {
+      "id": 2,
+      "titre": "Résultats des examens - Session juin 2024",
+      "service": "Secrétariat Général Académique",
+      "contenu": "<p>Les résultats des examens de la session de juin 2024 sont disponibles à partir du 30 juin 2024.</p><p>Consultation des résultats :<ul><li>Sur le tableau d'affichage du secrétariat académique</li><li>Via le portail étudiant en ligne</li></ul></p><p>Les recours éventuels doivent être introduits dans les 48 heures suivant la publication des résultats.</p>",
+      "date_created": "2024-06-30T10:00:00.000Z",
+      "id_auteur": 2,
+      "statut": "publié"
+    },
+    {
+      "id": 3,
+      "titre": "Journée Portes Ouvertes ISTA/GM 2024",
+      "service": "Service des Relations Publiques",
+      "contenu": "<p>L'ISTA/GM organise sa journée portes ouvertes le samedi 20 juillet 2024 de 9h à 16h.</p><p>Au programme :<ul><li>Présentation des filières d'études</li><li>Visite des laboratoires et ateliers</li><li>Démonstrations pratiques</li><li>Rencontres avec les enseignants</li></ul></p><p>Une occasion unique de découvrir notre institut et ses formations d'excellence.</p>",
+      "date_created": "2024-07-01T09:00:00.000Z",
+      "id_auteur": 3,
+      "statut": "publié"
+    },
+    {
+      "id": 4,
+      "titre": "Réunion des Anciens Élèves 2024",
+      "service": "Association des Alumni",
+      "contenu": "<p>L'Association des Alumni de l'ISTA/GM convie tous les anciens étudiants à la réunion annuelle qui se tiendra le samedi 24 août 2024.</p><p>Points à l'ordre du jour :<ul><li>Bilan des activités 2023-2024</li><li>Présentation des projets 2024-2025</li><li>Réseautage professionnel</li><li>Dîner de gala</li></ul></p><p>Votre présence est importante pour renforcer les liens entre les générations d'ingénieurs de l'ISTA/GM.</p>",
+      "date_created": "2024-07-24T14:00:00.000Z",
+      "id_auteur": 4,
+      "statut": "publié"
+    },
+    {
+      "id": 5,
+      "titre": "Mise à jour des horaires - Semestre d'automne 2024",
+      "service": "Secrétariat Général Académique",
+      "contenu": "<p>Les nouveaux horaires pour le semestre d'automne 2024 sont désormais disponibles.</p><p>Modifications importantes :<ul><li>Réaménagement des cours pratiques</li><li>Nouveaux créneaux pour les travaux dirigés</li><li>Optimisation des plages horaires des laboratoires</li></ul></p><p>Les étudiants sont priés de consulter attentivement ces nouveaux horaires qui entrent en vigueur dès la rentrée.</p>",
+      "date_created": "2024-09-01T11:00:00.000Z",
+      "id_auteur": 2,
+      "statut": "publié"
+    },
+    {
+      "id": 6,
+      "titre": "Programme de Mentorat 2024-2025",
+      "service": "Service d'Accompagnement Étudiant",
+      "contenu": "<p>L'ISTA/GM lance son programme de mentorat pour accompagner les nouveaux étudiants dans leur parcours académique.</p><p>Le programme propose :<ul><li>Un accompagnement personnalisé</li><li>Des séances de tutorat hebdomadaires</li><li>Des ateliers méthodologiques</li><li>Un suivi régulier des progrès</li></ul></p><p>Les étudiants intéressés peuvent s'inscrire auprès du Service d'Accompagnement Étudiant avant le 30 septembre 2024.</p>",
+      "date_created": "2024-09-05T13:00:00.000Z",
+      "id_auteur": 5,
+      "statut": "publié"
+    },
+    {
+      "id": 7,
+      "titre": "Conférence sur l'Innovation Technologique 2024",
+      "service": "Direction de la Recherche",
+      "contenu": "<p>La conférence annuelle sur l'innovation technologique se tiendra du 15 au 17 octobre 2024 à l'ISTA/GM.</p><p>Thèmes abordés :<ul><li>Intelligence artificielle dans l'industrie</li><li>Énergies renouvelables</li><li>Automatisation industrielle</li><li>Développement durable</li></ul></p><p>Les inscriptions sont ouvertes à tous les étudiants, enseignants et professionnels du secteur.</p>",
+      "date_created": "2024-09-15T09:00:00.000Z",
+      "id_auteur": 6,
+      "statut": "publié"
+    }
+  ]
+}
+
+

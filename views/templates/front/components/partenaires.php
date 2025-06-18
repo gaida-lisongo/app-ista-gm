@@ -85,7 +85,7 @@ $(document).ready(function() {
         return `${date.getDate()}/${months[date.getMonth()]}/${date.getFullYear()}`;
     }
     
-    $.get(`${apiUrl}/home/calenrier`)
+    $.get(`${apiUrl}/home/calendrier`)
         .done(function(response) {
             if (response.success && response.data.length > 0) {
                 const carouselInner = $('.carousel-inner');

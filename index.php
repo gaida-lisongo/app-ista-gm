@@ -39,9 +39,12 @@ class Router {
             
             // Check if method exists
             if(method_exists($controller, $method)) {
-                // Remove the method name from parameters if it's the first element
-                if($params[0] === $method) {
-                    array_shift($params);
+                
+                if (count($params)) {
+                    // Remove the method name from parameters if it's the first element
+                    if($params[0] === $method) {
+                        array_shift($params);
+                    }
                 }
                 // Call the method with remaining parameters
                 return call_user_func_array([$controller, $method], $params);
@@ -66,7 +69,7 @@ spl_autoload_register(function($class) {
 
 
 // Global variables for the view like Api BaseURL
-define('API', 'https://frozen-chandal-admin-elmes-d89f2982.koyeb.app/api');
+define('API', 'https://server-ista-gm-sncd.onrender.com/api');
 
 // Start the router
 $router = new Router();

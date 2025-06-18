@@ -53,6 +53,7 @@ class SectionView extends HomeView
             'matiere', 
             [
                 'cours' => "Mécanique des fluides",
+                'id' => htmlspecialchars($slug),
             ], 
             "Matière " . htmlspecialchars($slug));
     }
